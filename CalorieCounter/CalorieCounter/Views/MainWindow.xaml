@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalorieCounter"
         mc:Ignorable="d"
-        Title="MyCalorieCounter" Height="450" Width="400"  TextBlock.TextAlignment="Center">
+        Title="MyCalorieCounter" Height="450" Width="400" TextBlock.TextAlignment="Center" Window.ResizeMode="NoResize">
     <Window.Resources>
         <!--<Style TargetType="TextBlock">
             --><!--<Setter Property="FontSize" Value="12"></Setter>--><!--
         </Style>-->
     </Window.Resources>
+    <ScrollViewer>
     <Grid Margin="10,0,0,0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -54,7 +55,27 @@
                 <TextBlock Text="Breakfast" FontWeight="Bold"></TextBlock>
                 <Grid>
                     <ListBox
-                            ItemsSource="{Binding FoodCalories}" BorderThickness="0">
+                            ItemsSource="{Binding BreakFastCalories}" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Food}"></TextBlock>
+                                    <TextBlock Text=" "></TextBlock>
+                                    <TextBlock Text="{Binding Calorie}" ></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <Button Content="ADD FOOD"></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Lunch" FontWeight="Bold"></TextBlock>
+                <Grid>
+                    <ListBox
+                        ItemsSource="{Binding LunchCalories}" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -69,18 +90,22 @@
                 <Button Content="ADD FOOD" ></Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="2" HorizontalAlignment="Left">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Lunch" FontWeight="Bold"></TextBlock>
-                <Grid>
-                </Grid>
-                <Button Content="ADD FOOD" ></Button>
-            </StackPanel>
-        </Grid>
         <Grid Grid.Row="3" HorizontalAlignment="Left">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Dinner" FontWeight="Bold"></TextBlock>
                 <Grid>
+                    <ListBox
+                        ItemsSource="{Binding DinnerCalories}" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Food}"></TextBlock>
+                                    <TextBlock Text=" "></TextBlock>
+                                    <TextBlock Text="{Binding Calorie}" ></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
                 <Button Content="ADD FOOD" ></Button>
             </StackPanel>
@@ -89,6 +114,18 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Snacks" FontWeight="Bold"></TextBlock>
                 <Grid>
+                    <ListBox
+                        ItemsSource="{Binding SnacksCalories}" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Food}"></TextBlock>
+                                    <TextBlock Text=" "></TextBlock>
+                                    <TextBlock Text="{Binding Calorie}" ></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
                 <Button Content="ADD FOOD" ></Button>
             </StackPanel>
@@ -97,17 +134,34 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Exercise" FontWeight="Bold"></TextBlock>
                 <Grid>
+                    <ListBox
+                        ItemsSource="{Binding ExerciseCalories}" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ExerciseType}"></TextBlock>
+                                    <TextBlock Text=" "></TextBlock>
+                                    <TextBlock Text="{Binding CalorieBurnt}" ></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
-                <Button Content="ADD FOOD" ></Button>
+                <Button Content="ADD EXERCISE" ></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="6" HorizontalAlignment="Left">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Water" FontWeight="Bold"></TextBlock>
                 <Grid>
+                    <ListBox
+                        ItemsSource="{Binding WaterCalories}" BorderThickness="0">
+                      
+                    </ListBox>
                 </Grid>
-                <Button Content="ADD FOOD" ></Button>
+                <Button Content="ADD WATER" ></Button>
             </StackPanel>
         </Grid>
     </Grid>
+    </ScrollViewer>
 </Window>
