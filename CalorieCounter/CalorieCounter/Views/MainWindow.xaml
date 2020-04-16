@@ -1,0 +1,113 @@
+﻿<Window x:Class="CalorieCounter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalorieCounter"
+        mc:Ignorable="d"
+        Title="MyCalorieCounter" Height="450" Width="400"  TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <!--<Style TargetType="TextBlock">
+            --><!--<Setter Property="FontSize" Value="12"></Setter>--><!--
+        </Style>-->
+    </Window.Resources>
+    <Grid Margin="10,0,0,0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Text="1200"></TextBlock>
+                <TextBlock Text="Goal"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="0"></TextBlock>
+                <TextBlock Text="Food"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center">
+                <TextBlock Text="0"></TextBlock>
+                <TextBlock Text="Exercise"></TextBlock>
+            </StackPanel>
+            <TextBlock Grid.Column="3" Text="=" VerticalAlignment="Center"></TextBlock>
+            <StackPanel Orientation="Vertical" Grid.Column="4" VerticalAlignment="Center">
+                <TextBlock Text="1200"></TextBlock>
+                <TextBlock Text="Remaining"></TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="0,10,0,0">
+            <StackPanel Orientation="Vertical" >
+                <TextBlock Text="Breakfast" FontWeight="Bold"></TextBlock>
+                <Grid>
+                    <ListBox
+                            ItemsSource="{Binding FoodCalories}" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Food}"></TextBlock>
+                                    <TextBlock Text=" "></TextBlock>
+                                    <TextBlock Text="{Binding Calorie}" ></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <Button Content="ADD FOOD" ></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Lunch" FontWeight="Bold"></TextBlock>
+                <Grid>
+                </Grid>
+                <Button Content="ADD FOOD" ></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Dinner" FontWeight="Bold"></TextBlock>
+                <Grid>
+                </Grid>
+                <Button Content="ADD FOOD" ></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Snacks" FontWeight="Bold"></TextBlock>
+                <Grid>
+                </Grid>
+                <Button Content="ADD FOOD" ></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="5" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Exercise" FontWeight="Bold"></TextBlock>
+                <Grid>
+                </Grid>
+                <Button Content="ADD FOOD" ></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="6" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Water" FontWeight="Bold"></TextBlock>
+                <Grid>
+                </Grid>
+                <Button Content="ADD FOOD" ></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
