@@ -5,9 +5,29 @@ namespace CalorieCounter.ViewModels
 {
     public class Exercise : INotifyPropertyChanged
     {
-        public string ExerciseType { get; set; }
+        private string _exerciseType;
 
-        public double CalorieBurnt { get; set; }
+        public string ExerciseType
+        {
+            get { return _exerciseType; }
+            set
+            {
+                _exerciseType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _calorieBurnt;
+
+        public double CalorieBurnt
+        {
+            get { return _calorieBurnt; }
+            set
+            {
+                _calorieBurnt = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)

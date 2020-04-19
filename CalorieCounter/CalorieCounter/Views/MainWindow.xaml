@@ -4,15 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalorieCounter"
+        xmlns:views="clr-namespace:CalorieCounter.Views"
         mc:Ignorable="d"
         Title="MyCalorieCounter" Height="450" Width="400" TextBlock.TextAlignment="Center" Window.ResizeMode="NoResize">
     <Window.Resources>
-        <!--<Style TargetType="TextBlock">
-            --><!--<Setter Property="FontSize" Value="12"></Setter>--><!--
-        </Style>-->
+       <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
     </Window.Resources>
     <ScrollViewer>
-    <Grid Margin="10,0,0,0" >
+        <Grid>
+            <Grid  Visibility="{Binding Path=OpenAddBreakFast, Converter={StaticResource BoolToVis}}">
+                <views:AddFoodView Height="50"/>
+            </Grid>
+            <Grid  Visibility="{Binding Path=OpenAddLunch, Converter={StaticResource BoolToVis}}">
+                <views:AddFoodView Height="50"/>
+            </Grid>
+            <Grid  Visibility="{Binding Path=OpenAddDinner, Converter={StaticResource BoolToVis}}">
+                <views:AddFoodView Height="50"/>
+            </Grid>
+            <Grid  Visibility="{Binding Path=OpenAddSnack, Converter={StaticResource BoolToVis}}">
+                <views:AddFoodView Height="50"/>
+            </Grid>
+            <Grid Visibility="{Binding Path=OpenAddExercise, Converter={StaticResource BoolToVis}}">
+                <views:AddExerciseView/>
+            </Grid>
+            <Grid Visibility="Collapsed">
+                <views:AddWaterView/>
+            </Grid>
+            <Grid Margin="10,0,0,0"  Visibility="{Binding Path=MainView, Converter={StaticResource BoolToVis}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -55,7 +73,7 @@
                 <TextBlock Text="Breakfast" FontWeight="Bold"></TextBlock>
                 <Grid>
                     <ListBox
-                            ItemsSource="{Binding BreakFastCalories}" BorderThickness="0">
+                            ItemsSource="{Binding BreakFastCaloriesList}" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -67,7 +85,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Button Content="ADD FOOD"></Button>
+                        <Button Content="ADD FOOD" Command="{Binding AddFoodBreakFastCaloriesCommand}"></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2" HorizontalAlignment="Left">
@@ -75,7 +93,7 @@
                 <TextBlock Text="Lunch" FontWeight="Bold"></TextBlock>
                 <Grid>
                     <ListBox
-                        ItemsSource="{Binding LunchCalories}" BorderThickness="0">
+                        ItemsSource="{Binding LunchCaloriesList}" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -87,7 +105,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Button Content="ADD FOOD" ></Button>
+                        <Button Content="ADD FOOD" Command="{Binding AddFoodLunchCaloriesCommand}"></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="3" HorizontalAlignment="Left">
@@ -95,7 +113,7 @@
                 <TextBlock Text="Dinner" FontWeight="Bold"></TextBlock>
                 <Grid>
                     <ListBox
-                        ItemsSource="{Binding DinnerCalories}" BorderThickness="0">
+                        ItemsSource="{Binding DinnerCaloriesList}" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -107,7 +125,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Button Content="ADD FOOD" ></Button>
+                        <Button Content="ADD FOOD" Command="{Binding AddFoodDinnerCaloriesCommand}"></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="4" HorizontalAlignment="Left">
@@ -115,7 +133,7 @@
                 <TextBlock Text="Snacks" FontWeight="Bold"></TextBlock>
                 <Grid>
                     <ListBox
-                        ItemsSource="{Binding SnacksCalories}" BorderThickness="0">
+                        ItemsSource="{Binding SnacksCaloriesList}" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -127,7 +145,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Button Content="ADD FOOD" ></Button>
+                        <Button Content="ADD FOOD" Command="{Binding AddFoodSnackCaloriesCommand}"></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="5" HorizontalAlignment="Left">
@@ -135,7 +153,7 @@
                 <TextBlock Text="Exercise" FontWeight="Bold"></TextBlock>
                 <Grid>
                     <ListBox
-                        ItemsSource="{Binding ExerciseCalories}" BorderThickness="0">
+                        ItemsSource="{Binding ExerciseCaloriesList}" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -147,7 +165,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Button Content="ADD EXERCISE" ></Button>
+                        <Button Content="ADD EXERCISE" Command="{Binding AddExerciseCaloriesCommand}"></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="6" HorizontalAlignment="Left">
@@ -155,7 +173,7 @@
                 <TextBlock Text="Water" FontWeight="Bold"></TextBlock>
                 <Grid>
                     <ListBox
-                        ItemsSource="{Binding WaterCalories}" BorderThickness="0">
+                        ItemsSource="{Binding WaterList}" BorderThickness="0">
                       
                     </ListBox>
                 </Grid>
@@ -163,5 +181,6 @@
             </StackPanel>
         </Grid>
     </Grid>
+        </Grid>
     </ScrollViewer>
 </Window>
