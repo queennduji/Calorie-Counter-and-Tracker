@@ -17,18 +17,14 @@
         </Style>
     </UserControl.Resources>
     <Grid VerticalAlignment="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+      
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="Water" FontWeight="Bold"></TextBlock>
-        <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding WaterAdded}" Width="100"></TextBox>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Cups" FontWeight="Bold"></TextBlock>
-        <Button Grid.Column="2" Grid.Row="1" Content="Add" Height="50" Width="100" Command="{Binding AddWaterCommand}" ></Button>
+        <TextBox Grid.Column="0" Text="{Binding WaterAdded}" Width="100"></TextBox>
+        <TextBlock Grid.Column="1" Text="Cups" FontWeight="Bold"></TextBlock>
+        <Button Grid.Column="2" Content="Add"  Width="100" Command="{Binding AddedWaterCommand}" ></Button>
     </Grid>
 </UserControl>

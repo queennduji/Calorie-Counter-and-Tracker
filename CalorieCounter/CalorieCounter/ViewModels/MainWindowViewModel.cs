@@ -28,7 +28,7 @@ namespace CalorieCounter.ViewModels
         public ObservableCollection<Exercise> ExerciseCaloriesList { get; set; } = new ObservableCollection<Exercise>
             ();
 
-        public ObservableCollection<double> WaterList { get; set; } = new ObservableCollection<double> { 5, 6, 5 };
+        public ObservableCollection<double> WaterList { get; set; } = new ObservableCollection<double>();
 
         #endregion
 
@@ -114,6 +114,22 @@ namespace CalorieCounter.ViewModels
             MainView = false;
             OnPropertyChanged("MainView");
             OnPropertyChanged("OpenAddExercise");
+        }
+
+        public ICommand AddWaterCommand
+        {
+            get
+            {
+                return new RelayCommand(AddWater);
+            }
+        }
+
+        public void AddWater()
+        {
+            OpenAddWater = true;
+            MainView = false;
+            OnPropertyChanged("MainView");
+            OnPropertyChanged("OpenAddWater");
         }
         #endregion
 
@@ -271,7 +287,7 @@ namespace CalorieCounter.ViewModels
             set { _waterAdded = value; }
         }
 
-        public ICommand AddWaterCommand { get { return new RelayCommand(AddedWater); } }
+        public ICommand AddedWaterCommand { get { return new RelayCommand(AddedWater); } }
 
         public void AddedWater()
         {
