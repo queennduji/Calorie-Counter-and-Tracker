@@ -16,7 +16,7 @@
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
