@@ -240,16 +240,18 @@ namespace CalorieCounter.ViewModels
 
         #region Properties and commands AddExerciseView
 
-        private string _exerciseTypeAdded;
+        private string _cardio = "Cardio";
 
-        public string ExerciseTypeAdded
+        public string Cardio
         {
-            get { return _exerciseTypeAdded; }
-            set
-            {
-                _exerciseTypeAdded = value;
-                OnPropertyChanged();
-            }
+            get { return _cardio; }
+        }
+
+        private string _strength = "Strength";
+
+        public string Strength
+        {
+            get { return _strength; }
         }
 
         private double _exerciseCalorieBurnt;

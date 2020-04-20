@@ -30,8 +30,8 @@
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Calorie" FontWeight="Bold"></TextBlock>
         <!--<TextBox Grid.Column="0" Grid.Row="1" Text="{Binding ExerciseTypeAdded}" Width="100"></TextBox>-->
         <ComboBox Grid.Column="0" Grid.Row="1" Width="100" Height="25" VerticalAlignment="Center">
-            <ComboBoxItem IsSelected="True" HorizontalAlignment="Center">Cardio</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center"> Strength</ComboBoxItem>
+            <ComboBoxItem IsSelected="True" HorizontalAlignment="Center" Content="{Binding Cardio}"></ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center" Content="{Binding Strength}"></ComboBoxItem>
         </ComboBox>
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding ExerciseCalorieBurnt}" Width="100"></TextBox>
         <Button Grid.Column="2" Grid.Row="1" Content="Add" Width="100" Command="{Binding AddExerciseCalorieCommand}" FontWeight="Bold"></Button>
