@@ -2,37 +2,43 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CalorieCounter.Models;
 using GalaSoft.MvvmLight.CommandWpf;
+using MVVM.Data;
+using MVVM.Models;
 
 namespace CalorieCounter.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+
+        CalorieCounterContext context = new CalorieCounterContext();
+
+        #region Constructor
+        public MainWindowViewModel()
+        {
+            SelectedExerciseType = ExerciseTypeList[0];
+        }
+        #endregion
+
         #region Lists
-
+        //Observable collection for each item that can be added
         public ObservableCollection<FoodCalorie> BreakFastCaloriesList { get; set; } = new ObservableCollection<FoodCalorie>();
-
         public ObservableCollection<FoodCalorie> LunchCaloriesList { get; set; } = new ObservableCollection<FoodCalorie>();
-
         public ObservableCollection<FoodCalorie> DinnerCaloriesList { get; set; } = new ObservableCollection<FoodCalorie>();
-
-        public ObservableCollection<FoodCalorie> SnacksCaloriesList { get; set; } = new ObservableCollection<FoodCalorie>
-                ();
-
-        public ObservableCollection<Exercise> ExerciseCaloriesList { get; set; } = new ObservableCollection<Exercise>
-            ();
-
-        public ObservableCollection<double> WaterList { get; set; } = new ObservableCollection<double>();
-
+        public ObservableCollection<FoodCalorie> SnacksCaloriesList { get; set; } = new ObservableCollection<FoodCalorie>();
+        public ObservableCollection<Exercise> ExerciseCaloriesList { get; set; } = new ObservableCollection<Exercise>();
+        public ObservableCollection<Water> WaterList { get; set; } = new ObservableCollection<Water>();
         #endregion
 
         #region Commands MainWindowView
+        //commands that open the view where the user inputs his/her data
         public ICommand AddFoodBreakFastCaloriesCommand
         {
             get
@@ -135,7 +141,7 @@ namespace CalorieCounter.ViewModels
 
 
         #region Properties MainWindowView
-
+        //properties binding the visibility of each view including mainwindow view
         private bool _mainView = true;
         public bool MainView
         {
@@ -198,16 +204,29 @@ namespace CalorieCounter.ViewModels
         }
 
         public ICommand AddFoodCalorieCommand { get { return new RelayCommand(AddFoodCalorie); } }
-
+        /// <summary>
+        /// Function for when the "add food" button is clicked in addfoodview
+        /// </summary>
         public void AddFoodCalorie()
         {
             if (OpenAddBreakFast == true)
             {
+                //add to breakfastlist
                 BreakFastCaloriesList.Add(new FoodCalorie { Food = FoodAdded, Calorie = FoodCalorieAdded });
                 MainView = true;
                 OpenAddBreakFast = false;
                 OnPropertyChanged("MainView");
                 OnPropertyChanged("OpenAddBreakFast");
+
+                //store in database
+                var t = new FoodCalorie()
+                {
+                    Breakfast = true,
+                    Food = FoodAdded,
+                    Calorie = FoodCalorieAdded
+                };
+                context.FoodsAndCalories.Add(t);
+                context.SaveChanges();
             }
             else
             if (OpenAddLunch == true)
@@ -217,6 +236,15 @@ namespace CalorieCounter.ViewModels
                 OpenAddLunch = false;
                 OnPropertyChanged("MainView");
                 OnPropertyChanged("OpenAddLunch");
+
+                var t = new FoodCalorie()
+                {
+                    Lunch = true,
+                    Food = FoodAdded,
+                    Calorie = FoodCalorieAdded
+                };
+                context.FoodsAndCalories.Add(t);
+                context.SaveChanges();
             }
             else
             if (OpenAddDinner == true)
@@ -226,6 +254,16 @@ namespace CalorieCounter.ViewModels
                 OpenAddDinner = false;
                 OnPropertyChanged("MainView");
                 OnPropertyChanged("OpenAddDinner");
+
+                //store in database
+                var t = new FoodCalorie()
+                {
+                    Dinner = true,
+                    Food = FoodAdded,
+                    Calorie = FoodCalorieAdded
+                };
+                context.FoodsAndCalories.Add(t);
+                context.SaveChanges();
             }
             else if (OpenAddSnack == true)
             {
@@ -234,28 +272,45 @@ namespace CalorieCounter.ViewModels
                 OpenAddSnack = false;
                 OnPropertyChanged("MainView");
                 OnPropertyChanged("OpenAddSnack");
+
+                //store in database
+                var t = new FoodCalorie()
+                {
+                    Snacks = true,
+                    Food = FoodAdded,
+                    Calorie = FoodCalorieAdded
+                };
+                context.FoodsAndCalories.Add(t);
+                context.SaveChanges();
             }
         }
         #endregion
 
         #region Properties and commands AddExerciseView
 
-        private string _cardio = "Cardio";
-
-        public string Cardio
+        //itemsource for the combobox control
+        public ObservableCollection<string> _exerciseTypeList = new ObservableCollection<string>
+            {"Cardio", "Strength" };
+        public ObservableCollection<string> ExerciseTypeList
         {
-            get { return _cardio; }
+            get { return _exerciseTypeList; }
+            set { _exerciseTypeList = value; }
         }
 
-        private string _strength = "Strength";
-
-        public string Strength
+        //property binding the selected item of item control;
+        private string _selectedExerciseType;
+        public string SelectedExerciseType
         {
-            get { return _strength; }
+            get { return _selectedExerciseType; }
+            set
+            {
+                _selectedExerciseType = value;
+                OnPropertyChanged();
+            }
         }
 
+        //property binding the textbox of exercise calorie added
         private double _exerciseCalorieBurnt;
-
         public double ExerciseCalorieBurnt
         {
             get { return _exerciseCalorieBurnt; }
@@ -266,15 +321,26 @@ namespace CalorieCounter.ViewModels
             }
         }
 
+        //command for addexercise button
+        //this button adds the exercise and calories to the list and then stores it in the database
         public ICommand AddExerciseCalorieCommand { get { return new RelayCommand(AddExerciseCalorie); } }
-
         public void AddExerciseCalorie()
         {
-            ExerciseCaloriesList.Add(new Exercise { ExerciseType = FoodAdded, CalorieBurnt = FoodCalorieAdded });
+            //add and display to exercise list
+            ExerciseCaloriesList.Add(new Exercise { ExerciseType = SelectedExerciseType, CalorieBurnt = ExerciseCalorieBurnt });
             MainView = true;
             OpenAddExercise = false;
             OnPropertyChanged("MainView");
             OnPropertyChanged("OpenAddExercise");
+
+            //add to exercise table in database
+            var t = new Exercise()
+            {
+                ExerciseType = SelectedExerciseType,
+                CalorieBurnt = ExerciseCalorieBurnt
+            };
+            context.ExerciseAndCalories.Add(t);
+            context.SaveChanges();
         }
 
         #endregion
@@ -282,26 +348,29 @@ namespace CalorieCounter.ViewModels
         #region Properties and Commands AddWaterView
 
         private double _waterAdded;
-
         public double WaterAdded
         {
             get { return _waterAdded; }
             set { _waterAdded = value; }
         }
-
         public ICommand AddedWaterCommand { get { return new RelayCommand(AddedWater); } }
-
         public void AddedWater()
-        {
-         
-                WaterList.Add(WaterAdded);
-                MainView = true;
-                OpenAddWater = false;
-                OnPropertyChanged("MainView");
-                OnPropertyChanged("OpenAddWater");
-            
-        }
+        {//add water amount to list
 
+            WaterList.Add(new Water { WaterAdded = WaterAdded });
+            MainView = true;
+            OpenAddWater = false;
+            OnPropertyChanged("MainView");
+            OnPropertyChanged("OpenAddWater");
+
+            //add to water amount to water table in database
+            var t = new Water()
+            {
+                WaterAdded = WaterAdded
+            };
+            context.WaterDrank.Add(t);
+            context.SaveChanges();
+        }
         #endregion
 
         #region PropertyChanged

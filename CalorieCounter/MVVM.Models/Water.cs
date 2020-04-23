@@ -1,35 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalorieCounter.Models
+namespace MVVM.Models
 {
-    public class FoodCalorie : INotifyPropertyChanged
-    {
-        private string _food;
-        public string Food
+    [Table("Water")]
+    public class Water : ModelBase,INotifyPropertyChanged
+   {
+       private double _water;
+        public double WaterAdded
         {
-            get { return _food; }
+            get { return _water; }
             set
             {
-                _food = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _calorie;
-
-        public double Calorie
-        {
-            get { return _calorie; }
-            set
-            {
-                _calorie = value;
-                OnPropertyChanged();
+                _water = value;
+                OnPropertyChanged("Water");
             }
         }
 

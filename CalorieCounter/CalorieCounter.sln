@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCounter", "CalorieCounter\CalorieCounter.csproj", "{E45D54BA-2BA8-4DAF-AD7B-24D4DABEB548}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM.Models", "MVVM.Models\MVVM.Models.csproj", "{BD1EE46A-9ABD-41D3-8E59-25BBA77EA6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM.Data", "MVVM.Data\MVVM.Data.csproj", "{2353F918-F93E-4F6D-B63E-00C2A4359C3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E45D54BA-2BA8-4DAF-AD7B-24D4DABEB548}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E45D54BA-2BA8-4DAF-AD7B-24D4DABEB548}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E45D54BA-2BA8-4DAF-AD7B-24D4DABEB548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1EE46A-9ABD-41D3-8E59-25BBA77EA6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1EE46A-9ABD-41D3-8E59-25BBA77EA6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1EE46A-9ABD-41D3-8E59-25BBA77EA6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1EE46A-9ABD-41D3-8E59-25BBA77EA6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2353F918-F93E-4F6D-B63E-00C2A4359C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2353F918-F93E-4F6D-B63E-00C2A4359C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2353F918-F93E-4F6D-B63E-00C2A4359C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2353F918-F93E-4F6D-B63E-00C2A4359C3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

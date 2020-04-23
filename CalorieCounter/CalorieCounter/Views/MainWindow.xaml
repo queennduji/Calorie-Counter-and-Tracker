@@ -180,7 +180,11 @@
                         <Grid>
                             <ListBox
                         ItemsSource="{Binding WaterList}" BorderThickness="0">
-
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding WaterAdded}" ></TextBlock>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
                             </ListBox>
                         </Grid>
                         <Button Content="ADD WATER" Command="{Binding AddWaterCommand}"></Button>
