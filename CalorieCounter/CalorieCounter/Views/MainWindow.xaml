@@ -6,10 +6,23 @@
         xmlns:local="clr-namespace:CalorieCounter"
         xmlns:views="clr-namespace:CalorieCounter.Views"
         mc:Ignorable="d"
-        Title="MyCalorieCounter" Height="450" Width="400" TextBlock.TextAlignment="Center" Window.ResizeMode="NoResize">
+        Title="MyCalorieCounter" 
+        FontWeight="Bold"
+        Height="450" Width="400" 
+        TextBlock.TextAlignment="Center" 
+        Window.ResizeMode="NoResize">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
         <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" Background="Blue" BorderThickness="1" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Width" Value="100"></Setter>
         </Style>
         <Style TargetType="ListBox">
@@ -18,31 +31,30 @@
     </Window.Resources>
     <ScrollViewer>
         <Grid>
-            <Grid  Visibility="{Binding Path=OpenAddBreakFast, Converter={StaticResource BoolToVis}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid  Visibility="{Binding Path=OpenAddBreakFast, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Margin="0,0,0.143,-0.286">
                 <views:AddFoodView Height="50"/>
             </Grid>
-            <Grid  Visibility="{Binding Path=OpenAddLunch, Converter={StaticResource BoolToVis}}">
+            <Grid  Visibility="{Binding Path=OpenAddLunch, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Margin="0,0,0.143,-0.286">
                 <views:AddFoodView Height="50"/>
             </Grid>
-            <Grid  Visibility="{Binding Path=OpenAddDinner, Converter={StaticResource BoolToVis}}">
+            <Grid  Visibility="{Binding Path=OpenAddDinner, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Margin="0,0,0.143,-0.286">
                 <views:AddFoodView Height="50"/>
             </Grid>
-            <Grid  Visibility="{Binding Path=OpenAddSnack, Converter={StaticResource BoolToVis}}">
+            <Grid  Visibility="{Binding Path=OpenAddSnack, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Margin="0,0,0.143,-0.286">
                 <views:AddFoodView Height="50"/>
             </Grid>
-            <Grid Visibility="{Binding Path=OpenAddExercise, Converter={StaticResource BoolToVis}}">
+            <Grid Visibility="{Binding Path=OpenAddExercise, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Margin="0,0,0.143,-0.286">
                 <views:AddExerciseView/>
             </Grid>
-            <Grid Visibility="{Binding Path=OpenAddWater, Converter={StaticResource BoolToVis}}">
+            <Grid Visibility="{Binding Path=OpenAddWater, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2" Margin="0,0,0.143,-0.286">
                 <views:AddWaterView/>
             </Grid>
-            <Grid Margin="10,0,0,0"  Visibility="{Binding Path=MainView, Converter={StaticResource BoolToVis}}">
+            <Grid Margin="10,0,0.143,-0.286"  Visibility="{Binding Path=MainView, Converter={StaticResource BoolToVis}}" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -56,25 +68,34 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center">
-                        <TextBlock Text="1200"></TextBlock>
-                        <TextBlock Text="Goal"></TextBlock>
+                        <TextBlock Text="1200" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="Goal" FontWeight="Bold"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
-                        <TextBlock Text="0"></TextBlock>
-                        <TextBlock Text="Food"></TextBlock>
+                        <TextBlock Text="0" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="Food" FontWeight="Bold"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center">
-                        <TextBlock Text="0"></TextBlock>
-                        <TextBlock Text="Exercise"></TextBlock>
+                        <TextBlock Text="0" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="Exercise" FontWeight="Bold"></TextBlock>
                     </StackPanel>
-                    <TextBlock Grid.Column="3" Text="=" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Column="3" Text="=" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
                     <StackPanel Orientation="Vertical" Grid.Column="4" VerticalAlignment="Center">
-                        <TextBlock Text="1200"></TextBlock>
-                        <TextBlock Text="Remaining"></TextBlock>
+                        <TextBlock Text="1200" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="Remaining" FontWeight="Bold"></TextBlock>
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="0,10,0,0">
+                <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="0,10,0,0">
                     <StackPanel Orientation="Vertical" >
                         <TextBlock Text="Breakfast" FontWeight="Bold"></TextBlock>
                         <Grid>
@@ -94,7 +115,7 @@
                         <Button Content="ADD FOOD" Command="{Binding AddFoodBreakFastCaloriesCommand}"></Button>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="2" HorizontalAlignment="Left">
+                <Grid Grid.Row="1" HorizontalAlignment="Left">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Lunch" FontWeight="Bold"></TextBlock>
                         <Grid>
@@ -114,7 +135,7 @@
                         <Button Content="ADD FOOD" Command="{Binding AddFoodLunchCaloriesCommand}"></Button>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="3" HorizontalAlignment="Left">
+                <Grid Grid.Row="2" HorizontalAlignment="Left">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Dinner" FontWeight="Bold"></TextBlock>
                         <Grid>
@@ -134,7 +155,7 @@
                         <Button Content="ADD FOOD" Command="{Binding AddFoodDinnerCaloriesCommand}"></Button>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="4" HorizontalAlignment="Left">
+                <Grid Grid.Row="3" HorizontalAlignment="Left">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Snacks" FontWeight="Bold"></TextBlock>
                         <Grid>
@@ -154,7 +175,7 @@
                         <Button Content="ADD FOOD" Command="{Binding AddFoodSnackCaloriesCommand}"></Button>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="5" HorizontalAlignment="Left">
+                <Grid Grid.Row="4" HorizontalAlignment="Left">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Exercise" FontWeight="Bold"></TextBlock>
                         <Grid>
@@ -174,7 +195,7 @@
                         <Button Content="ADD EXERCISE" Command="{Binding AddExerciseCaloriesCommand}"></Button>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="6" HorizontalAlignment="Left">
+                <Grid Grid.Row="5" HorizontalAlignment="Left">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Water" FontWeight="Bold"></TextBlock>
                         <Grid>
@@ -190,7 +211,8 @@
                         <Button Content="ADD WATER" Command="{Binding AddWaterCommand}"></Button>
                     </StackPanel>
                 </Grid>
+                </Grid>
             </Grid>
-        </Grid>
+</Grid>
     </ScrollViewer>
 </Window>
