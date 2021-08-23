@@ -21,7 +21,9 @@
             </Style.Resources>
         </Style>
     </UserControl.Resources>
-    <Grid VerticalAlignment="Center">
+    <Grid>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Content="Back" Background="Black" Width="100" Command="{Binding ReturnButtonCommand}"></Button>
+        <Grid VerticalAlignment="Center">
       
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -32,4 +34,5 @@
         <TextBlock Grid.Column="1" Text="Cups" FontWeight="Bold"></TextBlock>
         <Button Grid.Column="2" Content="Add"  Width="100" Command="{Binding AddedWaterCommand}" ></Button>
     </Grid>
+        </Grid>
 </UserControl>

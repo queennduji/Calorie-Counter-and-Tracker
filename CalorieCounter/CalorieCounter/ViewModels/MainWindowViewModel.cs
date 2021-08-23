@@ -371,6 +371,28 @@ namespace CalorieCounter.ViewModels
             context.WaterDrank.Add(t);
             context.SaveChanges();
         }
+
+        public ICommand ReturnButtonCommand { get { return new RelayCommand(Return); } }
+        public void Return()
+        {
+            MainView = true;
+            if (OpenAddWater || OpenAddExercise || OpenAddSnack || OpenAddBreakFast || OpenAddLunch || OpenAddDinner)
+            {
+                OpenAddWater = false;
+                OpenAddExercise = false;
+                OpenAddSnack = false;
+                OpenAddBreakFast = false;
+                OpenAddLunch = false;
+                OpenAddDinner = false;
+            }
+            OnPropertyChanged("MainView");
+            OnPropertyChanged("OpenAddWater");
+            OnPropertyChanged("OpenAddExercise");
+            OnPropertyChanged("OpenAddSnack");
+            OnPropertyChanged("OpenAddBreakFast");
+            OnPropertyChanged("OpenAddLunch");
+            OnPropertyChanged("OpenAddDinner");
+        }
         #endregion
 
         #region PropertyChanged
